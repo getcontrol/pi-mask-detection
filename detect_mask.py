@@ -16,11 +16,11 @@ import platform
 from alert_encoder import create_alert
 from db import LocalDB, persist_alert
 
-ON_DEVICE: bool = True  # Whether we're on the development machine (ON_DEVICE=False), or on the Pi (ON_DEVICE=True)
-SLEEP_TIME: int = 1  # second
+ON_DEVICE: bool = True
+SLEEP_TIME: int = 1
 
 camera = PiCamera()
-camera.rotation = 180  # in degrees, adjust based on your setup
+camera.rotation = 180
 
 db = LocalDB()
 
@@ -86,7 +86,7 @@ def main():
     conn = db.conn
 
     while True:
-        # Get camera feed
+        
         image = get_image()
 
         # Apply face detection
@@ -113,9 +113,7 @@ def main():
             print(f"  bbox:  {face.bbox}")
 
         image = image.convert("RGB")
-        # For each face in the image crop around the ROI and detect if mask or not mask
 
-        # Apply mask / no mask classifier
         mask_interpreter = make_interpreter(mask_model)
         mask_interpreter.allocate_tensors()
         input_details = mask_interpreter.get_input_details()
