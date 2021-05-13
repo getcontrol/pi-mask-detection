@@ -1,0 +1,10 @@
+image
+numpy
+Pillow
+pytz
+PyYAML
+six
+sqlparse
+protobuf
+picamera==1.13
+tflite-runtime
